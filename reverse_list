@@ -1,0 +1,73 @@
+typedef struct node {
+	int data;
+	struct node *next;
+}Node, * Linkedlist;
+
+//创建一个带有n个结点的带头结点
+
+//
+Linkedlist tail_create(int n)
+{
+	Node *h, *r, *s;
+	h = (Node*)malloc(sizeof(Node));
+	h->next = NULL;
+	r = h;
+	int data;
+	for (int i = 0;i < n;i++)
+	{
+		cin >> data;
+		s = (Node*)malloc(sizeof(Node));
+		s->data = data;
+		s->next = NULL;
+		r->next = s;
+		r = s;
+	}
+	r->next = NULL;
+	return h;
+}
+//print all the data in linkedlist
+void print(Linkedlist h)
+{
+	printf("输出链表中的元素序列：");
+	Node *p;
+	p = h->next;
+	while (p!=NULL)
+	{
+		printf("%4d",p->data);
+		p= p->next;
+	}
+	cout << endl;
+}
+void reverse(Linkedlist head)
+{
+	Node *r,*p,*pre;
+	pre = head->next;
+	//将一个链表拆开成两半，一半是头结点和第一个结点，另一半是从第二个结点开始到最后一个结点，做插入使用
+	//create a liskedlist with one node 
+	// pre point the first node
+	p = pre->next;
+	pre->next= NULL;
+	//r = p;
+	while (p != NULL)
+	{
+		// every time we need to save the next node of p;
+		r = p->next;
+		//head-insert int to the head 头插法建立链表
+		p->next = pre;
+		head->next = p;
+		pre = p;
+		p = r;
+	}
+}
+
+int main()
+{
+	Linkedlist h1;
+	int n = 10;
+	h1 = tail_create(n);
+	print(h1);
+	reverse(h1);
+	print(h1);
+	return 0;
+}
+
