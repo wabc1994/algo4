@@ -1,0 +1,12 @@
+//有序数组去重,采用尾接法的思想， index 代表数组中的有序无重复部分，i 代表后面未处理的部分，
+int remove(int a[],int n)
+{
+  int index=0;
+  for(int i=1;i<n;i++)
+  {
+    if（a[i]!=a[index]）
+      a[++index]=a[i]
+  }
+  return index+1;
+
+}
