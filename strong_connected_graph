@@ -4,6 +4,8 @@
 ，直接不是强连通图，如果可以遍历完所有顶点，则将图traverse ，同样从该结点开始遍历，如果能够遍历完所有的节点，
 则证明该有向图是强连通分量
 
+视频解释：https://www.youtube.com/watch?v=RpgcYiky7uw
+
 from collections import defaultdict
 
 """
