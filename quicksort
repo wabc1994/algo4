@@ -1,6 +1,6 @@
 int find_locate(int a[],int low,int high)
 {
-  int temp=a[0];
+  int temp=a[low];
   while(low<high)
  {
   while(low<high && a[high]>temp)
@@ -13,9 +13,16 @@ int find_locate(int a[],int low,int high)
 a[low]=temp;
 return low;
 }
+先从数列中取出一个数作为基准数。
+
+2．分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边。
+//上面程序的思想就是为了找到程序分开的中间结果，然后对左右两边执行递归算法
+
+在原始程序上面看，就是把整个问题分开为两部分，find_locate的作用就是找出分开的那个点即可
+//在祝程序中使用分治法的思想，左右两边进行分治，并且使用了递归了进行求解
 void quick_sort(int a[],int low,int high)
 {
-  while(low<high)
+  if(low<high)
   {
   int pivot=find_locate(a,low,high);
   quick_sort(a,low,pivot-1)
