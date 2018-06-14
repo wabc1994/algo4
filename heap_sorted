@@ -2,7 +2,13 @@
 using namespace std;
 #define N 100
 //n is size of heap, to heapify a subtree rooted with node i which is an index in arr[]
-void swap(int a, int b)
+//程序分为三个部分
+//调整堆 heapify 步骤一
+//建立一个堆   步骤二
+//堆排序 。  步骤三  先调用一次建立堆程序，（ 循环n次后面的步骤，i=n ,开始循环，逐渐减少数组的长度），然后交换根结点和最优一个结点，对根结点处进行调整堆，
+//调用步骤一中的程序即可又得一个最大堆，继续交换根结点和最后一个结点，一共进行n次
+//主程序调用   步骤四
+void swap(int &a, int &b)
 {
 	int temp;
 	if (a < b)
@@ -15,7 +21,8 @@ void swap(int a, int b)
 //deal with the subtree
 void heapify(int arr[], int n, int i)
 {
-	int largest = i;  //i is root of subtree
+	int largest = i;  //i is root of subtree， 数组结点的是从第0开始算的，如果是从第1开始算的话，left = 2*i +1; right
+	// =2*i+1
 	int l = 2 * i + 1;  //l is left tree of i 
 	int r = 2 * i + 2;	//r is right tree of i 
 	if (l<n && arr[l]>arr[largest])
@@ -48,6 +55,11 @@ void heapSort(int arr[], int n)
 		heapify(arr, i, 0);
 	}
 }
+
+
+//第二个版本  https://blog.csdn.net/xiaoxiaoxuewen/article/details/7570621，
+
+// 我自己的版本实现的基本思路同上面是基本一直的做法：https://www.programiz.com/dsa/heap-sort
 int main()
 {
 	int a[N];
